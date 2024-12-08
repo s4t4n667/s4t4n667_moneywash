@@ -1,0 +1,36 @@
+{
+    "access" : "Zugang verweigert",
+    "access_description" : "Sie benötigen einen Schlüssel, um die Wäscherei zu betreten",
+
+    "menu" : {
+        "input_title" : "Wäscherei┃Waschoptionen",
+        "title" : "Wie viel Geld möchten Sie waschen?",
+        "description" : "Nur numerische Werte"
+    },
+
+    "loading" : {
+        "progress" : "Geld wird geladen...",
+        "notify_nodirty" : "Kein Schmutziges Geld",
+        "notify_nodirty_description" : "Sie haben nicht genug schmutziges Geld zum Waschen",
+        "notify_invalid" : "Ungültiger Betrag",
+        "notify_invalid_description" : "Bitte geben Sie einen gültigen Betrag zum Waschen ein",
+        "notify_notoken" : "Kein Münzchip",
+        "notify_notoken_description" : "Sie benötigen einen Münzchip, um diese Maschine zu benutzen"
+    },
+
+    "washing" : {
+        "progress" : "Geld wird gewaschen...",
+        "notify_started" : "Wäsche gestartet",
+        "notify_started_description" : "Sie haben den Waschvorgang gestartet",
+        "notify_finished" : "Wäsche beendet",
+        "notify_finished_description" : "Sie haben das gesamte Geld gewaschen"
+    },
+
+    "drying" : {
+        "progress" : "Geld wird getrocknet und gezählt...",
+        "notify_success_title" : "Geld trocknen",
+        "notify_success_description": "Sie haben alle nassen Scheine getrocknet",
+        "notify_fail_title" : "Keine Nassen Scheine",
+        "notify_fail_description" : "Sie haben keine nassen Scheine zum Zählen und Trocknen"
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "access" : "Accès Refusé",
+    "access_description" : "Vous avez besoin d'une clé pour entrer dans la laverie",
+
+    "menu" : {
+        "input_title" : "Laverie┃Options de Lavage",
+        "title" : "Combien d'argent souhaitez-vous laver ?",
+        "description" : "Valeurs numériques uniquement"
+    },
+
+    "loading" : {
+        "progress" : "Chargement de l'argent...",
+        "notify_nodirty" : "Pas d'Argent Sale",
+        "notify_nodirty_description" : "Vous n'avez pas assez d'argent sale à laver",
+        "notify_invalid" : "Montant Invalide",
+        "notify_invalid_description" : "Veuillez entrer un montant valide à laver",
+        "notify_notoken" : "Pas de Jeton",
+        "notify_notoken_description" : "Vous avez besoin d'un jeton pour utiliser cette machine"
+    },
+
+    "washing" : {
+        "progress" : "Lavage de l'argent...",
+        "notify_started" : "Lavage Commencé",
+        "notify_started_description" : "Vous avez commencé le processus de lavage",
+        "notify_finished" : "Lavage Terminé",
+        "notify_finished_description" : "Vous avez fini de laver tout votre argent"
+    },
+
+    "drying" : {
+        "progress" : "Séchage et Comptage de l'argent...",
+        "notify_success_title" : "Séchage de l'argent",
+        "notify_success_description": "Vous avez séché tous vos billets mouillés",
+        "notify_fail_title" : "Pas de Billets Mouillés",
+        "notify_fail_description" : "Vous n'avez pas de billets mouillés à compter et à sécher"
+    }
+}

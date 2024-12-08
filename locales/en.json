@@ -1,0 +1,36 @@
+{ 
+    "access" : "Access Denied",
+    "access_description" : "You need a key to enter the Laundromat",
+
+    "menu" : {
+        "input_title" : "Laundromat┃Washing Options",
+        "title" : "How much money would you like to wash?",
+        "description" : "Numeric values only"
+    },
+
+    "loading" : {
+        "progress" : "Loading Money...",
+        "notify_nodirty" : "No Dirty Money",
+        "notify_nodirty_description" : "You do not have enough dirty money to wash",
+        "notify_invalid" : "Invalid Amount",
+        "notify_invalid_description" : "Please enter a valid amount to wash",
+        "notify_notoken" : "No Machine Token",
+        "notify_notoken_description" : "You need a token to use this machine"
+    },
+
+    "washing" : {
+        "progress" : "Washing Money...",
+        "notify_started" : "Wash Started",
+        "notify_started_description" : "You have started the washing process",
+        "notify_finished" : "Finished Washing",
+        "notify_finished_description" : "You have finished washing all of your money"
+    },
+
+    "drying" : {
+        "progress" : "Drying and Counting Money...",
+        "notify_success_title" : "Drying Money",
+        "notify_success_description": "You have dried all of your wet bills",
+        "notify_fail_title" : "No Wet Bills",
+        "notify_fail_description" : "You do not have any wet bills to count and dry"
+    }
+}
