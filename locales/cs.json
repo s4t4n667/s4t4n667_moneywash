@@ -1,0 +1,36 @@
+{ 
+    "access" : "Přístup zamítnut",
+    "access_description" : "Potřebujete klíč ke vstupu do prádelny",
+
+    "menu" : {
+        "input_title" : "Prádelna┃Možnosti praní",
+        "title" : "Kolik peněz si přejete vyprat?",
+        "description" : "Pouze číselné hodnoty"
+    },
+
+    "loading" : {
+        "progress" : "Načítání peněz...",
+        "notify_nodirty" : "Žádní špinavé peníze",
+        "notify_nodirty_description" : "Nemáš dostatečný počet špinavých peněz k vyprání",
+        "notify_invalid" : "Neplatný počet",
+        "notify_invalid_description" : "Prosím, vložte platný počet k vyprání",
+        "notify_notoken" : "Žádný Machine Token",
+        "notify_notoken_description" : "Potřebujete token k použití tohoto stroje"
+    },
+
+    "washing" : {
+        "progress" : "Praní peněz...",
+        "notify_started" : "Praní začalo",
+        "notify_started_description" : "Spustili jste proces praní",
+        "notify_finished" : "Dokončené praní",
+        "notify_finished_description" : "Dokončili jste praní všech svých peněz"
+    },
+
+    "drying" : {
+        "progress" : "Sušení a počítání peněz...",
+        "notify_success_title" : "Sušení peněz",
+        "notify_success_description": "Usušily jste všechny svoje peníze",
+        "notify_fail_title" : "Žádné mokré bankovky",
+        "notify_fail_description" : "Nemáš žádné mokré peníze k spočítání a usušení"
+    }
+}
