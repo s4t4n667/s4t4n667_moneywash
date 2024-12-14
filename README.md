@@ -10,6 +10,8 @@ Highly customisable moneywashing system, adding another dimension to criminal ro
 
 **Preview video:** [Click Here](https://youtu.be/Ct8jy92YkVc)
 <br>
+**Documentation:** [Click Here](https://s4t4n667.gitbook.io/asgaard-developments/free-scripts/s4t4n667_moneywash)
+<br>
 
 > Dependencies:
 > <br>
