@@ -185,33 +185,54 @@ end
 
 
 function EnterLaundry()
-	if config.requireKeycard then
-		local keycard = exports.ox_inventory:Search('count',config.keycardItem)
-		if keycard >= 1 then
-			DoScreenFadeOut(100)
-			Wait(1000)
-			SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67)
-			SetEntityHeading(PlayerPedId(), 41.47)
-			Wait(1000)
-			DoScreenFadeIn(100)
-			InsideLaundry = true
-		else
-			lib.notify({
-				title = locale('access'),
-				description = locale('access_description'),
+    if config.requireKeycard then
+        local keycard = exports.ox_inventory:Search('count', config.keycardItem)
+        if keycard >= 1 then
+            DoScreenFadeOut(100)
+            Wait(1000)
+            SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67)
+            SetEntityHeading(PlayerPedId(), 41.47)
+            Wait(1000)
+            DoScreenFadeIn(100)
+            InsideLaundry = true
+        elseif config.policeAccess and hasJobPolice() then
+            DoScreenFadeOut(100)
+            Wait(1000)
+            SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67)
+            SetEntityHeading(PlayerPedId(), 41.47)
+            Wait(1000)
+            DoScreenFadeIn(100)
+            InsideLaundry = true
+        else
+            lib.notify({
+                title = locale('access'),
+                description = locale('access_description'),
                 icon = 'fa-solid fa-key',
                 iconColor = '#8C2425',
-			})
-		end
-	else
-		DoScreenFadeOut(100)
-		Wait(1000)
-		SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67)
-		SetEntityHeading(PlayerPedId(), 41.47)
-		Wait(1000)
-		DoScreenFadeIn(100)
-		InsideLaundry = true
-	end
+            })
+        end
+    else
+        DoScreenFadeOut(100)
+        Wait(1000)
+        SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67)
+        SetEntityHeading(PlayerPedId(), 41.47)
+        Wait(1000)
+        DoScreenFadeIn(100)
+        InsideLaundry = true
+    end
+end
+
+
+function hasJobPolice()
+    if config.useQBCore == true then 
+        QBCore = exports["qb-core"]:GetCoreObject()
+        local PlayerData = QBCore.Functions.GetPlayerData()
+        return PlayerData.job and PlayerData.job.name == config.policeJob
+    else
+        ESX = exports['es_extended']:getSharedObject()
+        local playerData = ESX.GetPlayerData()
+        return playerData.job and playerData.job.name == config.policeJob
+    end
 end
 
 

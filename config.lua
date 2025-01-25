@@ -1,5 +1,10 @@
 return {
 
+    useQBCore = true,
+
+    policeAccess = false, -- allow Police to access without a key?
+    policeJob = 'police', -- name of your Police job
+
     blip = {
         enabled = true,
         label = 'Laundromat',
