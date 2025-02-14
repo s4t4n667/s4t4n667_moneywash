@@ -1,5 +1,5 @@
 local config = lib.require('config')
-
+lib.versionCheck('s4t4n667/s4t4n667_moneywash')
 
 RegisterServerEvent('s4t4n667_moneywash:cleanmoney', function(Amount)
     local Player = source
