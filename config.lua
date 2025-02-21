@@ -14,8 +14,8 @@ return {
         ticketItem = 'moneywash_token',
 
     laundromatLocations = { -- supports only one location
-        vec3(524.4095, 3080.5393, 40.6643),
-        vec3(509.3459, 3091.2637, 40.4652),
+        vector3(1142.34, -986.67, 46.17), -- Mirror Park
+        vector3(84.47, -1552.26, 29.66), -- Strawberry
     },
 
     blip = {
