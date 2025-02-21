@@ -5,9 +5,17 @@ local CurrentlyWashing = false
 local InsideLaundry = false
 
 
+math.randomseed(GetGameTimer())
+local selectedLocation = config.laundromatLocations[math.random(#config.laundromatLocations)]
+
+if config.debug then
+    print(('Selected laundromat location: x=%.2f, y=%.2f, z=%.2f'):format(selectedLocation.x, selectedLocation.y, selectedLocation.z))
+end
+
+
 CreateThread(function()
     if config.blip.enabled then
-        local laundromatBlip = AddBlipForCoord(config.blip.coords.x, config.blip.coords.y, config.blip.coords.z)
+        local laundromatBlip = AddBlipForCoord(selectedLocation.x, selectedLocation.y, selectedLocation.z)
         SetBlipSprite(laundromatBlip, config.blip.sprite)
         SetBlipColour(laundromatBlip, config.blip.spriteColor)
         SetBlipScale(laundromatBlip, config.blip.scale)
@@ -187,19 +195,11 @@ end
 function EnterLaundry()
     if config.requireKeycard then
         local keycard = exports.ox_inventory:Search('count', config.keycardItem)
-        if keycard >= 1 then
+        if keycard >= 1 or (config.policeAccess and hasJobPolice()) then
             DoScreenFadeOut(100)
             Wait(1000)
-            SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67)
-            SetEntityHeading(PlayerPedId(), 41.47)
-            Wait(1000)
-            DoScreenFadeIn(100)
-            InsideLaundry = true
-        elseif config.policeAccess and hasJobPolice() then
-            DoScreenFadeOut(100)
-            Wait(1000)
-            SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67)
-            SetEntityHeading(PlayerPedId(), 41.47)
+            SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67) -- DO NOT CHANGE
+            SetEntityHeading(PlayerPedId(), 41.47) -- DO NOT CHANGE
             Wait(1000)
             DoScreenFadeIn(100)
             InsideLaundry = true
@@ -214,8 +214,8 @@ function EnterLaundry()
     else
         DoScreenFadeOut(100)
         Wait(1000)
-        SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67)
-        SetEntityHeading(PlayerPedId(), 41.47)
+        SetEntityCoords(PlayerPedId(), 1137.76, -3198.47, -39.67) -- DO NOT CHANGE
+        SetEntityHeading(PlayerPedId(), 41.47) -- DO NOT CHANGE
         Wait(1000)
         DoScreenFadeIn(100)
         InsideLaundry = true
@@ -240,8 +240,8 @@ function ExitLaundry()
 	InsideLaundry = false
 	DoScreenFadeOut(100)
 	Wait(500)
-	SetEntityCoords(PlayerPedId(), config.targetExit.coords.x, config.targetExit.coords.y, config.targetExit.coords.z)
-	SetEntityHeading(PlayerPedId(), config.targetExit.coords.w)
+	SetEntityCoords(PlayerPedId(), selectedLocation.x, selectedLocation.y, selectedLocation.z)
+	SetEntityHeading(PlayerPedId(), selectedLocation.heading)
 	Wait(1000)
 	DoScreenFadeIn(100)
 end
@@ -279,73 +279,73 @@ end)
 
 Citizen.CreateThread(function()
     exports.ox_target:addBoxZone({
-		coords = config.targetEntry.coords,
-		radius = 1,
-		debug = drawZones,
-		options = {
-			{
-				name = 'WashEnter',
-				label = config.targetEntry.label,
-				icon = config.targetEntry.icon,
+        coords = vector3(selectedLocation.x, selectedLocation.y, selectedLocation.z),
+        radius = 1,
+        debug = drawZones,
+        options = {
+            {
+                name = 'WashEnter',
+                label = config.targetEntry.label,
+                icon = config.targetEntry.icon,
                 iconColor = config.targetEntry.iconColor,
-				onSelect = function()
-					EnterLaundry()
-				end,
-			}
-		}
-	})
+                onSelect = function()
+                    EnterLaundry()
+                end,
+            }
+        }
+    })
     exports.ox_target:addBoxZone({
-		coords = vector3(1138.04, -3199.45, -39.6),
-		radius = 1,
-		debug = drawZones,
-		options = {
-			{
+        coords = vector3(1138.04, -3199.45, -39.6), -- DO NOT CHANGE
+        radius = 1,
+        debug = drawZones,
+        options = {
+            {
                 name = 'WashExit',
-                label = config.targetExit.label,                
+                label = config.targetExit.label,
                 icon = config.targetExit.icon,
                 iconColor = config.targetExit.iconColor,
                 onSelect = function() 
                     ExitLaundry() 
                 end,
-			}
-		}
-	})
+            }
+        }
+    })
     exports.ox_target:addBoxZone({
-		coords = config.targetWash.coords,
-		radius = 1,
-		debug = drawZones,
-		options = {
-			{
-				name = 'WashWash',
-				label = config.targetWash.label,
-				icon = config.targetWash.icon,
+        coords = config.targetWash.coords,
+        radius = 1,
+        debug = drawZones,
+        options = {
+            {
+                name = 'WashWash',
+                label = config.targetWash.label,
+                icon = config.targetWash.icon,
                 iconColor = config.targetWash.iconColor,
-				canInteract = function()
-					return InsideLaundry
-				end,
-				onSelect = function()
-					WashMoney()
-				end
-			}
-		}
-	})
-	exports.ox_target:addBoxZone({
-		coords = config.targetCount.coords,
-		radius = 1,
-		debug = drawZones,
-		options = {
-			{
+                canInteract = function()
+                    return InsideLaundry
+                end,
+                onSelect = function()
+                    WashMoney()
+                end
+            }
+        }
+    })
+    exports.ox_target:addBoxZone({
+        coords = config.targetCount.coords,
+        radius = 1,
+        debug = drawZones,
+        options = {
+            {
                 name = 'WashDry',
-                label = config.targetCount.label,				
-				icon = config.targetCount.icon,
+                label = config.targetCount.label,
+                icon = config.targetCount.icon,
                 iconColor = config.targetCount.iconColor,
-				canInteract = function()
-					return InsideLaundry
-				end,
-				onSelect = function()
-					DryMoney()
-				end
-			}
-		}
-	})
+                canInteract = function()
+                    return InsideLaundry
+                end,
+                onSelect = function()
+                    DryMoney()
+                end
+            }
+        }
+    })
 end)

@@ -1,24 +1,30 @@
 return {
 
+    debug = false,
+
     useQBCore = true,
 
     policeAccess = false, -- allow Police to access without a key?
     policeJob = 'police', -- name of your Police job
-
-    blip = {
-        enabled = true,
-        label = 'Laundromat',
-        coords = vector3(1144.13, -985.58, 45.95),
-        sprite = 77,
-        spriteColor = 3,
-        scale = 0.9,
-    },
 
     requireKeycard = true, -- use an item to enter the moneywash building.
         keycardItem = 'moneywash_key', 
 
     itemRequired = true, -- use an item to use the machines
         ticketItem = 'moneywash_token',
+
+    laundromatLocations = { -- supports only one location
+        vec3(524.4095, 3080.5393, 40.6643),
+        vec3(509.3459, 3091.2637, 40.4652),
+    },
+
+    blip = {
+        enabled = true,
+        label = 'Laundromat',
+        sprite = 77,
+        spriteColor = 3,
+        scale = 0.9,
+    },
 
     washing = {
         duration = 10000, -- time to wash money (same no matter what amount)
@@ -39,14 +45,12 @@ return {
 
     targetEntry = {
         label = 'Enter Laundromat',
-        coords = vector3(1142.34, -986.73, 46.11),
         icon = 'fa-solid fa-soap',
         iconColor = '#76A9D2',
     },
 
     targetExit = {
         label = 'Exit Laundromat',
-        coords = vector4(1142.85, -986.73, 45.9, 277.81),
         icon = 'fa-solid fa-door-open',
         iconColor = '#76A9D2',
     },

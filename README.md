@@ -4,6 +4,7 @@
 Highly customisable moneywashing system, adding another dimension to criminal roleplay in your server. You can add a blip to the map... keep it a secret... require an item to unlock the door or leave it open to whoever finds it!
 
 - Supports ESX, QBCore and Qbox.
+- Supports random locations on script restart.
 - Supports ox_target.
 - Support ox_inventory.
 - Locales: English, French & German.
