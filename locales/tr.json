@@ -1,0 +1,36 @@
+{
+    "access": "Erişim Reddedildi",
+    "access_description": "Çamaşırhaneye girmek için bir anahtara ihtiyacınız var",
+
+    "menu": {
+        "input_title": "Çamaşırhane┃Yıkama Seçenekleri",
+        "title": "Ne kadar para yıkamak istiyorsunuz?",
+        "description": "Sadece sayısal değerler girin"
+    },
+
+    "loading": {
+        "progress": "Para Yükleniyor...",
+        "notify_nodirty": "Kirli Para Yok",
+        "notify_nodirty_description": "Yıkamak için yeterli kirli paranız yok",
+        "notify_invalid": "Geçersiz Miktar",
+        "notify_invalid_description": "Lütfen geçerli bir miktar girin",
+        "notify_notoken": "Makine Jetonu Yok",
+        "notify_notoken_description": "Bu makineyi kullanmak için bir jetona ihtiyacınız var"
+    },
+
+    "washing": {
+        "progress": "Para Yıkanıyor...",
+        "notify_started": "Yıkama Başladı",
+        "notify_started_description": "Para yıkama işlemini başlattınız",
+        "notify_finished": "Yıkama Tamamlandı",
+        "notify_finished_description": "Tüm paranızı yıkamayı tamamladınız"
+    },
+
+    "drying": {
+        "progress": "Para Kurutuluyor ve Sayılıyor...",
+        "notify_success_title": "Para Kurutma",
+        "notify_success_description": "Tüm ıslak banknotlarınızı kuruttunuz",
+        "notify_fail_title": "Islak Banknot Yok",
+        "notify_fail_description": "Saymak ve kurutmak için hiç ıslak banknotunuz yok"
+    }
+}
