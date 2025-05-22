@@ -13,7 +13,7 @@ return {
     itemRequired = true, -- use an item to use the machines
         ticketItem = 'moneywash_token',
 
-    laundromatLocations = { -- supports only one location
+    laundromatLocations = { -- supports only one location at a time, randomises every script restart
         vector3(1142.34, -986.67, 46.17), -- Mirror Park
         vector3(84.47, -1552.26, 29.66), -- Strawberry
     },
