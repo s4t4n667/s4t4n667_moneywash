@@ -9,7 +9,7 @@ Highly customisable money laundering system, adding another dimension to crimina
 - [ox_inventory](https://github.com/overextended/ox_inventory)
   
 ## 🔗 Useful links:
-- [Preview video](https://youtu.be/Ct8jy92YkVc)
+- [Preview video](https://youtu.be/3x8JiuAHwKI?si=V9zdU6uedD4t7BMc)
 - [Documentation](https://s4t4n667.gitbook.io/asgaard-developments/free-scripts/s4t4n667_moneywash)
 
 ## ⚙️ How to install:
