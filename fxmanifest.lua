@@ -4,8 +4,8 @@ use_experimental_fxv2_oal 'yes'
 lua54 'yes'
 
 author "Asgaard Developments | s4t4n667"
-description 'Criminal moneywash system'
-version '1.1.1'
+description 'Criminal money laundering system'
+version '2.0.0'
 
 shared_script {
     '@ox_lib/init.lua',
@@ -22,10 +22,4 @@ server_scripts {
 
 files {
     'locales/*.json'
-}
-
-dependencies {
-    'ox_lib',
-    'ox_target',
-    'ox_inventory'
 }
