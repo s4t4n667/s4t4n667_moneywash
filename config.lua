@@ -9,13 +9,13 @@ return {
 
     laundromatLocations = { -- supports only one location at a time, randomises every script restart
         vector3(1142.34, -986.67, 46.17), -- Mirror Park
-        --vector3(84.47, -1552.26, 29.66), -- Strawberry
+        vector3(84.47, -1552.26, 29.66), -- Strawberry
     },
 
     entry = {
         requireKey = true, -- use an item to enter the moneywash building.
         keyItem = 'moneywash_key',
-        removeKey = true, -- remove key upon entry?
+        removeKey = false, -- remove key upon entry?
         hideTargetWithoutKey = false, -- only show target option to those with a key?
     },
 
