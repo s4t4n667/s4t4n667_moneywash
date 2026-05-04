@@ -1,36 +1,46 @@
 { 
-    "access" : "Přístup zamítnut",
-    "access_description" : "Potřebujete klíč ke vstupu do prádelny",
+    "access" : "Přístup odepřen",
+    "access_description" : "Pro vstup do prádelny potřebujete klíč",
 
     "menu" : {
         "input_title" : "Prádelna┃Možnosti praní",
-        "title" : "Kolik peněz si přejete vyprat?",
+        "title" : "Kolik peněz chcete vyprat?",
         "description" : "Pouze číselné hodnoty"
     },
 
     "loading" : {
         "progress" : "Načítání peněz...",
-        "notify_nodirty" : "Žádní špinavé peníze",
-        "notify_nodirty_description" : "Nemáš dostatečný počet špinavých peněz k vyprání",
-        "notify_invalid" : "Neplatný počet",
-        "notify_invalid_description" : "Prosím, vložte platný počet k vyprání",
-        "notify_notoken" : "Žádný Machine Token",
-        "notify_notoken_description" : "Potřebujete token k použití tohoto stroje"
+        "notify_too_low" : "Částka je příliš nízká",
+        "notify_too_low_description" : "Minimální částka pro praní je %s špinavých peněz",
+        "notify_nodirty" : "Žádné špinavé peníze",
+        "notify_nodirty_description" : "Nemáte dostatek špinavých peněz k vyprání",
+        "notify_invalid" : "Neplatná částka",
+        "notify_invalid_description" : "Zadejte prosím platnou částku k vyprání",
+        "notify_notoken" : "Žádný žeton do stroje",
+        "notify_notoken_description" : "K použití tohoto stroje potřebujete žeton"
     },
 
     "washing" : {
         "progress" : "Praní peněz...",
-        "notify_started" : "Praní začalo",
-        "notify_started_description" : "Spustili jste proces praní",
-        "notify_finished" : "Dokončené praní",
+        "notify_started" : "Praní zahájeno",
+        "notify_started_description" : "Zahájili jste proces praní",
+        "notify_finished" : "Praní dokončeno",
         "notify_finished_description" : "Dokončili jste praní všech svých peněz"
     },
 
     "drying" : {
         "progress" : "Sušení a počítání peněz...",
-        "notify_success_title" : "Sušení peněz",
-        "notify_success_description": "Usušily jste všechny svoje peníze",
+        "notify_success_title" : "Praní peněz",
+        "notify_success_description": "Usušili jste všechny své mokré bankovky",
         "notify_fail_title" : "Žádné mokré bankovky",
-        "notify_fail_description" : "Nemáš žádné mokré peníze k spočítání a usušení"
+        "notify_fail_description" : "Nemáte žádné mokré bankovky k počítání a sušení"
+    },
+
+    "shop" : {
+        "title" : "Obchod s praním peněz",
+        "notify_title" : "Obchod",
+        "notify_success" : "Nákup byl úspěšný",
+        "notify_carry" : "Nedostatek místa v inventáři",
+        "notify_money" : "Nedostatek peněz"    
     }
 }

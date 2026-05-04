@@ -1,36 +1,46 @@
-{
-    "access" : "Accès Refusé",
-    "access_description" : "Vous avez besoin d'une clé pour entrer dans la laverie",
+{ 
+    "access" : "Accès refusé",
+    "access_description" : "Vous avez besoin d’une clé pour entrer dans la laverie",
 
     "menu" : {
-        "input_title" : "Laverie┃Options de Lavage",
-        "title" : "Combien d'argent souhaitez-vous laver ?",
+        "input_title" : "Laverie┃Options de lavage",
+        "title" : "Combien d’argent souhaitez-vous laver ?",
         "description" : "Valeurs numériques uniquement"
     },
 
     "loading" : {
-        "progress" : "Chargement de l'argent...",
-        "notify_nodirty" : "Pas d'Argent Sale",
-        "notify_nodirty_description" : "Vous n'avez pas assez d'argent sale à laver",
-        "notify_invalid" : "Montant Invalide",
+        "progress" : "Chargement de l’argent...",
+        "notify_too_low" : "Montant trop faible",
+        "notify_too_low_description" : "Le montant minimum de lavage est de %s sale",
+        "notify_nodirty" : "Pas d’argent sale",
+        "notify_nodirty_description" : "Vous n’avez pas assez d’argent sale à laver",
+        "notify_invalid" : "Montant invalide",
         "notify_invalid_description" : "Veuillez entrer un montant valide à laver",
-        "notify_notoken" : "Pas de Jeton",
-        "notify_notoken_description" : "Vous avez besoin d'un jeton pour utiliser cette machine"
+        "notify_notoken" : "Pas de jeton de machine",
+        "notify_notoken_description" : "Vous avez besoin d’un jeton pour utiliser cette machine"
     },
 
     "washing" : {
-        "progress" : "Lavage de l'argent...",
-        "notify_started" : "Lavage Commencé",
+        "progress" : "Lavage de l’argent...",
+        "notify_started" : "Lavage commencé",
         "notify_started_description" : "Vous avez commencé le processus de lavage",
-        "notify_finished" : "Lavage Terminé",
-        "notify_finished_description" : "Vous avez fini de laver tout votre argent"
+        "notify_finished" : "Lavage terminé",
+        "notify_finished_description" : "Vous avez terminé de laver tout votre argent"
     },
 
     "drying" : {
-        "progress" : "Séchage et Comptage de l'argent...",
-        "notify_success_title" : "Séchage de l'argent",
+        "progress" : "Séchage et comptage de l’argent...",
+        "notify_success_title" : "Blanchiment d’argent",
         "notify_success_description": "Vous avez séché tous vos billets mouillés",
-        "notify_fail_title" : "Pas de Billets Mouillés",
-        "notify_fail_description" : "Vous n'avez pas de billets mouillés à compter et à sécher"
+        "notify_fail_title" : "Aucun billet mouillé",
+        "notify_fail_description" : "Vous n’avez aucun billet mouillé à compter et à sécher"
+    },
+
+    "shop" : {
+        "title" : "Boutique de blanchiment d’argent",
+        "notify_title" : "Boutique",
+        "notify_success" : "Achat réussi",
+        "notify_carry" : "Espace d’inventaire insuffisant",
+        "notify_money" : "Pas assez d’argent"    
     }
 }
