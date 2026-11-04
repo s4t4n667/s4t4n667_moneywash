@@ -1,6 +1,9 @@
 { 
     "access" : "Přístup odepřen",
     "access_description" : "Pro vstup do prádelny potřebujete klíč",
+    "inventory_full" : "Plný inventář",
+    "inventory_full_description" : "Nebudete mít dost místa, abyste unesli peníze",
+    "inventory_dropped_description" : "Neměli jste dost místa v kapsách, věci leží u vašich nohou",
 
     "menu" : {
         "input_title" : "Prádelna┃Možnosti praní",
@@ -25,7 +28,9 @@
         "notify_started" : "Praní zahájeno",
         "notify_started_description" : "Zahájili jste proces praní",
         "notify_finished" : "Praní dokončeno",
-        "notify_finished_description" : "Dokončili jste praní všech svých peněz"
+        "notify_finished_description" : "Dokončili jste praní všech svých peněz",
+        "notify_cant_leave" : "Praní stále probíhá",
+        "notify_cant_leave_description" : "Nemůžete odejít, dokud se vaše peníze nedoperou"
     },
 
     "drying" : {

@@ -1,6 +1,9 @@
 { 
     "access" : "Erişim Reddedildi",
     "access_description" : "Çamaşırhaneye girmek için bir anahtara ihtiyacınız var",
+    "inventory_full" : "Envanter Dolu",
+    "inventory_full_description" : "Parayı taşımak için yeterli yeriniz olmayacak",
+    "inventory_dropped_description" : "Ceplerinizde yeterli yer yoktu, eşyalar ayaklarınızın dibinde",
 
     "menu" : {
         "input_title" : "Çamaşırhane┃Yıkama Seçenekleri",
@@ -25,7 +28,9 @@
         "notify_started" : "Yıkama başladı",
         "notify_started_description" : "Yıkama işlemini başlattınız",
         "notify_finished" : "Yıkama tamamlandı",
-        "notify_finished_description" : "Tüm paranızı yıkamayı tamamladınız"
+        "notify_finished_description" : "Tüm paranızı yıkamayı tamamladınız",
+        "notify_cant_leave" : "Yıkama Devam Ediyor",
+        "notify_cant_leave_description" : "Paranızın yıkanması bitene kadar ayrılamazsınız"
     },
 
     "drying" : {

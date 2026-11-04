@@ -1,6 +1,9 @@
 { 
     "access" : "Access Denied",
     "access_description" : "You need a key to enter the Laundromat",
+    "inventory_full" : "Inventory Full",
+    "inventory_full_description" : "You won't have enough space to carry the money",
+    "inventory_dropped_description" : "You didn't have enough space in your pockets, items at your feet",
 
     "menu" : {
         "input_title" : "Laundromat┃Washing Options",
@@ -25,7 +28,9 @@
         "notify_started" : "Wash Started",
         "notify_started_description" : "You have started the washing process",
         "notify_finished" : "Finished Washing",
-        "notify_finished_description" : "You have finished washing all of your money"
+        "notify_finished_description" : "You have finished washing all of your money",
+        "notify_cant_leave" : "Still Washing",
+        "notify_cant_leave_description" : "You can't leave until your money has finished washing"
     },
 
     "drying" : {

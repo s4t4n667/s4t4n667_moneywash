@@ -2,17 +2,27 @@ lib.locale()
 local config = lib.require('config')
 
 local CurrentlyWashing = false
+local CountdownShowing = false
 local InsideLaundry = false
 
-math.randomseed(GetGameTimer())
-local locations = config.laundromatLocations
-local selectedLocation = locations[math.random(#locations)]
+AddEventHandler('onResourceStop', function(resourceName)
+    if resourceName ~= GetCurrentResourceName() then return end
 
-if config.debug then
-    print(('Selected laundromat location: x=%.2f, y=%.2f, z=%.2f'):format(selectedLocation.x, selectedLocation.y, selectedLocation.z))
-end
+    if CountdownShowing then
+        lib.hideTextUI()
+    end
+end)
+
+local selectedLocation
 
 CreateThread(function()
+    while not GlobalState.moneywashLocation do Wait(100) end
+    selectedLocation = config.laundromatLocations[GlobalState.moneywashLocation]
+
+    if config.debug then
+        print(('Selected laundromat location: x=%.2f, y=%.2f, z=%.2f'):format(selectedLocation.x, selectedLocation.y, selectedLocation.z))
+    end
+
     if config.blip.enabled then
         local laundromatBlip = AddBlipForCoord(selectedLocation.x, selectedLocation.y, selectedLocation.z)
         SetBlipSprite(laundromatBlip, config.blip.sprite)
@@ -62,11 +72,13 @@ function WashMoney()
 
         if not WashAmount then
             notify('loading.notify_invalid', 'loading.notify_invalid_description', 'fa-solid fa-ban', config.notifications.failColor)
+            CurrentlyWashing = false
             return
         end
 
         if WashAmount < minAmount then
             notify('loading.notify_too_low', locale('loading.notify_too_low_description'):format(minAmount), 'fa-solid fa-arrow-down', config.notifications.failColor)
+            CurrentlyWashing = false
             return
         end
 
@@ -74,6 +86,11 @@ function WashMoney()
 
         if black_money < WashAmount then
             notify('loading.notify_nodirty', 'loading.notify_nodirty_description', 'fa-solid fa-ban', config.notifications.failColor)
+            CurrentlyWashing = false
+            return
+        end
+
+        if not lib.callback.await('s4t4n667_moneywash:canCarry', false, 'wash', WashAmount) then
             CurrentlyWashing = false
             return
         end
@@ -91,11 +108,15 @@ function WashMoney()
             },
         })
 
-        TriggerServerEvent('s4t4n667_moneywash:cleanmoney', WashAmount)
-        Wait(200)
+        local duration = lib.callback.await('s4t4n667_moneywash:cleanmoney', false, WashAmount)
         ClearPedTasksImmediately(PlayerPedId())
 
-        CurrentlyWashing = false
+        if not duration then
+            CurrentlyWashing = false
+            return
+        end
+
+        washCountdown(duration)
     end
 
     if config.washing.itemRequired then
@@ -111,48 +132,45 @@ function WashMoney()
     handleWash()
 end
 
-local function handleWash()
-    ExecuteCommand(config.loading.animation) 
-    
-    lib.progressBar({ 
-        duration = config.loading.duration, 
-        label = locale('loading.progress'), 
-        useWhileDead = false, 
-        canCancel = false, 
-        disable = { move = true, mouse = false, }, 
-    }) 
-    
-    TriggerServerEvent('s4t4n667_moneywash:cleanmoney', WashAmount) 
-    Wait(200) 
-    ClearPedTasksImmediately(PlayerPedId())
-end
-
-RegisterNetEvent('s4t4n667_moneywash:washactions', function()
-    CurrentlyWashing = true
-
+function washCountdown(duration)
     notify('washing.notify_started', 'washing.notify_started_description', 'fa-solid fa-soap', config.notifications.generalColor)
     Wait(500)
 
-    if lib.progressBar({
-        duration = config.washing.duration,
-        label = locale('washing.progress'),
-        useWhileDead = false,
-        canCancel = false,
-    }) then        
-        notify('washing.notify_finished', 'washing.notify_finished_description', 'fa-solid fa-soap', config.notifications.successColor)
-        
-        CurrentlyWashing = false
+    local endTime = GetGameTimer() + duration
+    CountdownShowing = true
+
+    while true do
+        local secondsLeft = math.ceil((endTime - GetGameTimer()) / 1000)
+        if secondsLeft <= 0 then break end
+
+        lib.showTextUI(('%s %d:%02d'):format(locale('washing.progress'), secondsLeft // 60, secondsLeft % 60), {
+            position = 'right-center',
+            icon = 'fa-solid fa-soap',
+        })
+        Wait(250)
     end
-end)
+
+    lib.hideTextUI()
+    CountdownShowing = false
+    notify('washing.notify_finished', 'washing.notify_finished_description', 'fa-solid fa-soap', config.notifications.successColor)
+
+    CurrentlyWashing = false
+end
 
 function DryMoney()
     CurrentlyDrying = true
 
-    local WetBills = exports.ox_inventory:Search('count', 'wet_bills')
+    local WetBills = exports.ox_inventory:Search('count', config.washing.wetMoney)
 
     if WetBills > 0 then
+        if not lib.callback.await('s4t4n667_moneywash:canCarry', false, 'dry') then
+            CurrentlyDrying = false
+            return
+        end
+
         SetEntityHeading(PlayerPedId(), 96.65)
         ExecuteCommand(config.drying.animation)
+        TriggerServerEvent('s4t4n667_moneywash:startDrying')
 
         if lib.progressBar({
             duration = config.drying.duration,
@@ -166,7 +184,7 @@ function DryMoney()
         }) then
             notify('drying.notify_success_title', 'drying.notify_success_description', 'fa-solid fa-money-bill', config.notifications.successColor)
             Wait(300)
-            TriggerServerEvent('s4t4n667_moneywash:drymoney', WetBills)
+            TriggerServerEvent('s4t4n667_moneywash:drymoney')
             Wait(1000)
             ClearPedTasksImmediately(PlayerPedId())
         end
@@ -178,15 +196,9 @@ function DryMoney()
 end
 
 function EnterLaundry()
-    local canEnter = true
     local ped = PlayerPedId()
 
-    if config.entry.requireKey then
-        local key = exports.ox_inventory:Search('count', config.entry.keyItem)
-        canEnter = (key >= 1) or (config.policeAccess and hasJobPolice())
-    end
-
-    if not canEnter then
+    if not lib.callback.await('s4t4n667_moneywash:enter', false) then
         notify('access', 'access_description', 'fa-solid fa-key', config.notifications.failColor)
         return
     end
@@ -197,43 +209,25 @@ function EnterLaundry()
     SetEntityHeading(ped, 41.47)
     Wait(1000)
     DoScreenFadeIn(100)
-    InsideLaundry = true    
-
-    if config.entry.removeKey then
-        TriggerServerEvent('s4t4n667_moneywash:entryKey')
-    end
+    InsideLaundry = true
 end
 
 function ExitLaundry()
+	if CurrentlyWashing then
+		notify('washing.notify_cant_leave', 'washing.notify_cant_leave_description', 'fa-solid fa-ban', config.notifications.failColor)
+		return
+	end
+
 	InsideLaundry = false
+	TriggerServerEvent('s4t4n667_moneywash:exit')
 	DoScreenFadeOut(100)
 	Wait(500)
 	SetEntityCoords(PlayerPedId(), selectedLocation.x, selectedLocation.y, selectedLocation.z)
-	SetEntityHeading(PlayerPedId(), selectedLocation.heading)
+	if type(selectedLocation) == 'vector4' then
+		SetEntityHeading(PlayerPedId(), selectedLocation.w)
+	end
 	Wait(1000)
 	DoScreenFadeIn(100)
-end
-
-function hasJobPolice()
-    if config.useQBCore then 
-        local QBCore = exports["qb-core"]:GetCoreObject()
-        local PlayerData = QBCore.Functions.GetPlayerData()
-        jobName = PlayerData.job and PlayerData.job.name
-    else
-        local ESX = exports['es_extended']:getSharedObject()
-        local playerData = ESX.GetPlayerData()
-        jobName = playerData.job and playerData.job.name
-    end
-
-    if not jobName then return false end
-
-    for _, job in ipairs(config.policeJob) do
-        if job == jobName then
-            return true
-        end
-    end
-
-    return false
 end
 
 local function hasKey()
@@ -244,6 +238,8 @@ local function hasKey()
 end
 
 Citizen.CreateThread(function()
+    while not selectedLocation do Wait(100) end
+
     exports.ox_target:addBoxZone({
         coords = vector3(selectedLocation.x, selectedLocation.y, selectedLocation.z),
         size = vec3(1.0, 1.0, 1.0),
@@ -326,8 +322,9 @@ Citizen.CreateThread(function()
     })
 end)
 
-
 CreateThread(function()
+    if not config.shop.enabled then return end
+
     local pedModel = config.shop.pedModel
     local coords = config.shop.coords
 

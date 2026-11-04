@@ -1,6 +1,9 @@
 { 
     "access" : "Zugriff verweigert",
     "access_description" : "Sie benötigen einen Schlüssel, um die Wäscherei zu betreten",
+    "inventory_full" : "Inventar voll",
+    "inventory_full_description" : "Sie werden nicht genug Platz haben, um das Geld zu tragen",
+    "inventory_dropped_description" : "Sie hatten nicht genug Platz in Ihren Taschen, die Gegenstände liegen zu Ihren Füßen",
 
     "menu" : {
         "input_title" : "Wäscherei┃Waschoptionen",
@@ -25,7 +28,9 @@
         "notify_started" : "Waschvorgang gestartet",
         "notify_started_description" : "Sie haben den Waschvorgang gestartet",
         "notify_finished" : "Waschen abgeschlossen",
-        "notify_finished_description" : "Sie haben Ihr gesamtes Geld gewaschen"
+        "notify_finished_description" : "Sie haben Ihr gesamtes Geld gewaschen",
+        "notify_cant_leave" : "Wäsche läuft noch",
+        "notify_cant_leave_description" : "Sie können erst gehen, wenn Ihr Geld fertig gewaschen ist"
     },
 
     "drying" : {

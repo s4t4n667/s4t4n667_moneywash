@@ -1,6 +1,9 @@
 { 
     "access" : "Accès refusé",
     "access_description" : "Vous avez besoin d’une clé pour entrer dans la laverie",
+    "inventory_full" : "Inventaire plein",
+    "inventory_full_description" : "Vous n'aurez pas assez de place pour porter l'argent",
+    "inventory_dropped_description" : "Vous n'aviez pas assez de place dans vos poches, les objets sont à vos pieds",
 
     "menu" : {
         "input_title" : "Laverie┃Options de lavage",
@@ -25,7 +28,9 @@
         "notify_started" : "Lavage commencé",
         "notify_started_description" : "Vous avez commencé le processus de lavage",
         "notify_finished" : "Lavage terminé",
-        "notify_finished_description" : "Vous avez terminé de laver tout votre argent"
+        "notify_finished_description" : "Vous avez terminé de laver tout votre argent",
+        "notify_cant_leave" : "Lavage en cours",
+        "notify_cant_leave_description" : "Vous ne pouvez pas partir avant la fin du lavage de votre argent"
     },
 
     "drying" : {

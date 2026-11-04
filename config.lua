@@ -1,44 +1,11 @@
 return {
 
-    debug = false,
+    debug = false,                          -- print debug info to the console
+    framework = 'auto',                     -- 'auto', 'qbox', 'qbcore' or 'esx'
 
-    useQBCore = true,
-
-    policeAccess = true, -- allow Police to access without a key?
-    policeJob = {'police', 'sheriff'}, -- name of your Police jobs
-
-    laundromatLocations = { -- supports only one location at a time, randomises every script restart
-        vector3(1142.34, -986.67, 46.17), -- Mirror Park
-        vector3(84.47, -1552.26, 29.66), -- Strawberry
-    },
-
-    entry = {
-        requireKey = true, -- use an item to enter the moneywash building.
-        keyItem = 'moneywash_key',
-        removeKey = false, -- remove key upon entry?
-        hideTargetWithoutKey = false, -- only show target option to those with a key?
-    },
-
-    washing = {
-        itemRequired = true, -- have to have an item to use the machines
-        ticketItem = 'moneywash_token', -- item needed to wash
-        minAmount = '10000', -- minimum amount to wash, if you don't want a minimum, set it very high
-        duration = 10000, -- time to wash money = 10s (same time no matter what amount)
-        taxRate = 0.10, -- removes 10% of total money put in
-        markedMoney = 'black_money', -- item put into the washer
-        wetMoney = 'wet_bills', -- item that must be dried and counted
-        cleanMoney = 'money', -- item given after money is dried and counted
-    },
-
-    shop = {
-        enabled = true,
-        coords = vector4(1129.6237, -988.6730, 45.9730, 116.6544),
-        pedModel = 'u_m_m_streetart_01',
-        currency = 'black_money',
-        items = {
-            { label = 'Moneywash Key', item = 'moneywash_key', icon = 'fa-key',  price = 10 },
-            { label = 'Moneywash Token', item = 'moneywash_token', icon = 'fa-coins', iconColor = '', price = 10 },
-        },        
+    laundromatLocations = {
+        vector3(1142.34, -986.67, 46.17),         -- Mirror Park
+        vector3(84.2931, -1552.0133, 29.5979),    -- Strawberry
     },
 
     blip = {
@@ -49,21 +16,61 @@ return {
         scale = 0.9,
     },
 
+    entry = {
+        requireKey = true,                        -- require an item to enter the building
+        keyItem = 'moneywash_key',                -- item used as the key
+        removeKey = false,                        -- remove the key on entry
+        hideTargetWithoutKey = false,             -- only show the entry target to players holding a key
+        keylessJobs = { 'police', 'sheriff' },    -- jobs that can enter without a key ({} = nobody)
+        keylessGangs = { 'ballas' },              -- gangs that can enter without a key, e.g. { 'ballas', 'vagos' }
+    },
+
+    washing = {
+        itemRequired = true,                -- require a token to use the machines
+        ticketItem = 'moneywash_token',     -- token consumed per wash
+        minAmount = 10000,                  -- minimum amount per wash (set to 1 for no minimum)
+        durationMode = 'flat',              -- 'flat' = same time for any amount, 'perAmount' = scales with amount
+        durationFlat = 10000,               -- flat: wash time in ms
+        perAmount = {                       -- perAmount: wash time = (amount / per) * time, clamped to min/max
+            time = 1000,                    -- ms added... 
+            per = 1000,                     -- ...for every this much money (1000 = 1s per $1,000)
+            min = 5000,                     -- shortest wash in ms
+            max = 60000,                    -- longest wash in ms
+        },
+        taxRate = 0.10,                     -- cut taken from the washed amount (0.10 = 10%)
+        markedMoney = 'black_money',        -- item put into the washer
+        wetMoney = 'wet_bills',             -- item received after washing, must be dried
+        cleanMoney = 'money',               -- item received after drying
+    },
+
+    shop = {
+        enabled = true,
+        coords = vector4(1129.6237, -988.6730, 45.9730, 116.6544),
+        pedModel = 'u_m_m_streetart_01',
+        currency = 'black_money',           -- item used to pay
+        items = {
+            { label = 'Moneywash Key',   item = 'moneywash_key',   icon = 'fa-key',   iconColor = '', price = 10 },
+            { label = 'Moneywash Token', item = 'moneywash_token', icon = 'fa-coins', iconColor = '', price = 10 },
+        },
+    },
+
+    loading = {                             -- loading money into the washer
+        duration = 5000,                    -- ms
+        animation = 'e mechanic4',          -- emote command
+    },
+
+    drying = {                              -- drying & counting wet bills
+        duration = 10000,                   -- ms
+        animation = 'e mechanic2',          -- emote command
+    },
+
+    ------ STYLE PREFERENCES ------
+
     notifications = {
         position = 'top',
         generalColor = '',
         failColor = '#c41b1e',
         successColor = '#51A231',
-    },
-
-    loading = {
-        duration = 5000,
-        animation = 'e mechanic4'
-    },
-
-    drying = {
-        duration = 10000,
-        animation = 'e mechanic2'
     },
 
     targetEntry = {
@@ -82,7 +89,7 @@ return {
 
     targetWash = {
         label = 'Wash Money',
-        coords = vec3(1122.2819, -3194.0934, -40.3986),
+        coords = vector3(1122.2819, -3194.0934, -40.3986),
         icon = 'fa-solid fa-money-bill',
         iconColor = '',
         distance = 2.0,
@@ -90,10 +97,10 @@ return {
 
     targetCount = {
         label = 'Dry & Count Money',
-        coords = vector3(1116.36, -3194.58, -39.92),
+        coords = vector3(1116.16, -3194.98, -40.42),
         icon = 'fa-solid fa-money-bill',
         iconColor = '',
         distance = 1.5,
     },
-    
+
 }

@@ -5,7 +5,7 @@ lua54 'yes'
 
 author "Asgaard Developments | s4t4n667"
 description 'Criminal money laundering system'
-version '2.0.0'
+version '2.1.0'
 
 shared_script {
     '@ox_lib/init.lua',
