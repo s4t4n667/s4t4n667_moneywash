@@ -2,7 +2,7 @@
 
 Highly customisable money laundering system, adding another dimension to criminal roleplay. Players load their dirty money into the machines, wait out the wash, then dry and count the bills before they're clean to spend.
 
-## 📝 Features:
+## ✨ Features:
 - Flat wash time, or a wash time that scales with the amount being washed
 - Countdown timer while washing, so players can still use their inventory
 - Inventory space checks before washing and drying, and anything that doesn't fit drops at the player's feet
