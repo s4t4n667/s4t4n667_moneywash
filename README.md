@@ -1,9 +1,18 @@
-## Criminal moneywashing system 🧼💵
+<div align="center">
 
-Highly customisable money laundering system, adding another dimension to criminal roleplay. Players load their dirty money into the machines, wait out the wash, then dry and count the bills before they're clean to spend.
+# s4t4n667_moneywash
+
+Highly customisable criminal money laundering system, adding another dimension to criminal roleplay. Players load their dirty money into the machines, wait out the wash, then dry and count the bills before they're clean to spend. Can set a flat wash time, or a wash time that scales with the amount players are washing.
+
+[**Preview Video**](https://youtu.be/3x8JiuAHwKI?si=V9zdU6uedD4t7BMc) | [**Documentation**](https://s4t4n667.gitbook.io/asgaard-developments/free-scripts/s4t4n667_moneywash) | [**Store**](https://s4t4n667.gitbook.io/asgaard-developments/free-scripts/s4t4n667_moneywash)
+
+<a href="https://5metrics.dev/resource/s4t4n667_moneywash">
+  <img src="https://badges.5metrics.dev/s4t4n667_moneywash/servers.svg?style=for-the-badge" alt="Servers">
+</a>
+
+</div>
 
 ## ✨ Features:
-- Flat wash time, or a wash time that scales with the amount being washed
 - Countdown timer while washing, so players can still use their inventory
 - Inventory space checks before washing and drying, and anything that doesn't fit drops at the player's feet
 - Optional: entrance key (can whitelist gangs/jobs to enter without), washing tokens, a minimum wash amount and a configurable tax rate
@@ -17,10 +26,6 @@ Highly customisable money laundering system, adding another dimension to crimina
 - [ox_target](https://github.com/overextended/ox_target)
 - [ox_inventory](https://github.com/overextended/ox_inventory)
 - [bob74_ipl](https://github.com/Bob74/bob74_ipl)
-  
-## 🔗 Useful links:
-- [Preview video](https://youtu.be/3x8JiuAHwKI?si=V9zdU6uedD4t7BMc)
-- [Documentation](https://s4t4n667.gitbook.io/asgaard-developments/free-scripts/s4t4n667_moneywash)
 
 ## ⚙️ How to install:
 1) Download the latest release
