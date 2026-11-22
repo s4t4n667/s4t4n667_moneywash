@@ -4,7 +4,7 @@
 
 Highly customisable criminal money laundering system, adding another dimension to criminal roleplay. Players load their dirty money into the machines, wait out the wash, then dry and count the bills before they're clean to spend. Can set a flat wash time, or a wash time that scales with the amount players are washing.
 
-[**Preview Video**](https://youtu.be/3x8JiuAHwKI?si=V9zdU6uedD4t7BMc) | [**Documentation**](https://s4t4n667.gitbook.io/asgaard-developments/free-scripts/s4t4n667_moneywash) | [**Store**](https://s4t4n667.gitbook.io/asgaard-developments/free-scripts/s4t4n667_moneywash)
+[**Preview Video**](https://youtu.be/3x8JiuAHwKI?si=V9zdU6uedD4t7BMc) | [**Documentation**](https://s4t4n667.gitbook.io/asgaard-developments/free-scripts/s4t4n667_moneywash) | [**Store**](https://asgaard-developments.tebex.io/)
 
 <a href="https://5metrics.dev/resource/s4t4n667_moneywash">
   <img src="https://badges.5metrics.dev/s4t4n667_moneywash/servers.svg?style=for-the-badge" alt="Servers">
